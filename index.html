@@ -6,6 +6,7 @@
   <body>
     <div id="widget">
       <p>Hello! Your user ID is {{ userId }}.</p>
+      <p>window.location.hash is {{ hash }}</p>
     </div>
     <script src="https://unpkg.com/matrix-widget-api@0.1.0-beta.18/dist/api.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
@@ -17,13 +18,14 @@
 
       const widgetApi = new mxwidgets.WidgetApi(widgetId);
 
-      widgetApi.requestCapability(mxwidgets.MatrixCapabilities.AlwaysOnScreen);
+      widgetApi.requestCapability(mxwidgets.MatrixCapabilities.RequiresClient);
 
       const app = new Vue({
         el: '#widget',
         data: {
           widgetId: widgetId,
-          userId: userId
+          userId: userId,
+          hash: window.location.hash
         }
       });
 
