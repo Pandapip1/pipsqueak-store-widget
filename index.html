@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Pipsqueak Store Widget</title>
+  </head>
+  <body>
+    <div id="widget">
+      <p>Hello! Your user ID is {{ userId }}.</p>
+    </div>
+    <script src="https://unpkg.com/matrix-widget-api@0.1.0/dist/api.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script type="text/javascript">
+      const qs = new URLSearchParams((window.location.hash || "?").substring(Math.max((window.location.hash || "?").indexOf('?'), 0)));
+      const widgetId = qs.get('widgetId');
+      const userId = qs.get('userId');
+
+      const widgetApi = new mxwidgets.WidgetApi(widgetId);
+
+      widgetApi.requestCapability(mxwidgets.MatrixCapabilities.AlwaysOnScreen);
+
+      const app = new Vue({
+        el: '#widget',
+        data: {
+          widgetId: widgetId,
+          userId: userId
+        }
+      });
+
+      widgetApi.on("ready", () => {
+        
+      });
+
+      widgetApi.start();
+    </script>
+  </body>
+</html>
