@@ -10,6 +10,7 @@
     <script src="https://unpkg.com/matrix-widget-api@0.1.0-beta.18/dist/api.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script type="text/javascript">
+      mxwidgets = mxwidgets(); // I assume this is a bug and will be fixed
       const qs = new URLSearchParams((window.location.hash || "?").substring(Math.max((window.location.hash || "?").indexOf('?'), 0)));
       const widgetId = qs.get('widgetId');
       const userId = qs.get('userId');
